@@ -1,0 +1,34 @@
+.navbar-new-top {
+  background: #3967db; }
+
+.navbar-brand {
+  color: #dae6f0;
+  font-weight: 600; }
+
+.navbar-brand img {
+  width: 20%; }
+
+.navbar-new-top ul {
+  margin-right: 10%; }
+
+.navbar-new-top nav ul li {
+  margin-right: 10%; }
+
+.navbar-nav .nav-item a {
+  color: #e7dcf3;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 1s ease;
+  margin-left: auto; }
+
+.navbar-nav .nav-item a:hover {
+  color: #c3dae2; }
+
+.navbar-nav .nav-iteem a {
+  color: #e7dcf3;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 1s ease; }
+
+.userlogin {
+  margin-right: 2cm; }
