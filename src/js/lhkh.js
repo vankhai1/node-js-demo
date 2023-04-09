@@ -47,7 +47,7 @@ axios.get('https://localhost:44363/api/ChucVu')
     const id = document.querySelector('#editIdCV').value;
     const tenChucVu = document.querySelector('#editTenChucVu').value;
     const moTa = document.querySelector('#editMoTa').value;
-
+      
     // Gửi dữ liệu cập nhật lên server
     axios.put('https://localhost:44363/api/ChucVu/id?id=' + id, {
         idCV: id,
@@ -67,10 +67,12 @@ axios.get('https://localhost:44363/api/ChucVu')
         console.log(error);
       });
   });
-});
+});   
       const column5 = document.createElement('td');
       column5.appendChild(editBtn);
       row.appendChild(column5);  
+     
+      
       // Thêm hàng vào tbody của bảng
       document.querySelector('table tbody').appendChild(row);
       
@@ -127,5 +129,25 @@ formAdd.addEventListener('submit', function (event) {
       console.log(error);
     });
 });
-//
 
+
+
+//kím tìm
+
+document.querySelector('#searchInput').addEventListener('input', function() {
+  const searchValue = this.value.toLowerCase(); // Lấy giá trị từ ô input và chuyển về chữ thường
+  
+  // Lặp lại mảng dữ liệu và kiểm tra xem các phần tử có chứa giá trị tìm kiếm hay không
+  const dataRows = document.querySelectorAll('table tbody tr');
+  dataRows.forEach(function(row) {
+    const name = row.querySelector('td:nth-of-type(2)').textContent.toLowerCase(); // Lấy giá trị tên chức vụ và chuyển về chữ thường
+    const description = row.querySelector('td:nth-of-type(3)').textContent.toLowerCase(); // Lấy giá trị mô tả và chuyển về chữ thường
+    
+    if (name.includes(searchValue) || description.includes(searchValue)) {
+      row.style.display = ''; // Hiển thị phần tử nếu chứa giá trị tìm kiếm
+    } else {
+      row.style.display = 'none'; // Ẩn phần tử nếu không chứa giá trị tìm kiếm
+    }
+  });
+});
+// xóa nè
