@@ -1,0 +1,131 @@
+axios.get('https://localhost:44363/api/ChucVu')
+  .then(function (response) {
+    // Lấy dữ liệu từ response
+    const data = response.data;
+    let counter = 1; // Khởi tạo biến đếm với giá trị ban đầu là 1
+    
+    // Lặp qua các phần tử trong mảng dữ liệu và tạo các thẻ HTML tương ứng
+    data.forEach(function (item) {
+      // Tạo một hàng mới trong bảng
+      const row = document.createElement('tr');
+      
+      // Tạo các ô trong hàng với dữ liệu tương ứng
+      const column1 = document.createElement('td');
+      column1.innerHTML = counter; // Sử dụng biến đếm để tạo số tự tăng
+      row.appendChild(column1);
+      
+      const column2 = document.createElement('td');
+      column2.innerHTML = item.tenChucVu;
+      row.appendChild(column2);
+      
+      const column3 = document.createElement('td');
+      column3.innerHTML = item.moTa;
+      row.appendChild(column3);
+      
+      const column4 = document.createElement('td');
+      column4.innerHTML = item.idCV;
+      row.appendChild(column4);
+      // Tạo một nút "Sửa, xóa" cho mỗi hàng
+      
+      const editBtn = document.createElement('button');
+      editBtn.classList.add('btn', 'btn-primary');
+      editBtn.innerText = 'Sửa';
+      editBtn.addEventListener('click', function() {
+    // Hiển thị modal để chỉnh sửa thông tin chức vụ
+    showModal(item);
+    function showModal(chucVu) {
+    const editForm = document.getElementById('editForm');
+    editForm.reset();
+    editForm.elements['idCV'].value = chucVu.idCV;
+    editForm.elements['tenChucVu'].value = chucVu.tenChucVu;
+    editForm.elements['moTa'].value = chucVu.moTa;
+    const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+    editModal.show();
+}
+    document.querySelector('#saveButton').addEventListener('click', function() {
+     // Lấy dữ liệu từ form
+    const id = document.querySelector('#editIdCV').value;
+    const tenChucVu = document.querySelector('#editTenChucVu').value;
+    const moTa = document.querySelector('#editMoTa').value;
+
+    // Gửi dữ liệu cập nhật lên server
+    axios.put('https://localhost:44363/api/ChucVu/id?id=' + id, {
+        idCV: id,
+        tenChucVu: tenChucVu,
+        moTa: moTa
+      })
+      .then(function(response) {
+        // Đóng modal sửa
+        const modal = document.querySelector('#editModal');
+        M.Modal.getInstance(modal).close();
+        
+        // Reload lại dữ liệu trên trang
+        loadData();
+        
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  });
+});
+      const column5 = document.createElement('td');
+      column5.appendChild(editBtn);
+      row.appendChild(column5);  
+      // Thêm hàng vào tbody của bảng
+      document.querySelector('table tbody').appendChild(row);
+      
+      counter++; // Tăng biến đếm lên 1 để sử dụng cho hàng tiếp theo
+    });
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+  //them 
+  // Gán form add chức vụ vào biến formAdd
+const formAdd = document.querySelector('#form-add');
+
+// Bắt sự kiện submit form
+formAdd.addEventListener('submit', function (event) {
+  event.preventDefault(); // Ngăn chặn hành động mặc định của submit form
+  
+  // Lấy dữ liệu từ form và đóng gói vào object
+  const formData = {
+    tenChucVu: document.querySelector('#ten-chuc-vu').value,
+    moTa: document.querySelector('#mo-ta').value,
+  };
+  
+  // Gửi dữ liệu lên server
+  axios.post('https://localhost:44363/api/ChucVu', formData)
+    .then(function (response) {
+      // Nếu thành công, thêm chức vụ mới vào bảng
+      const data = response.data;
+      
+      // Tạo một hàng mới trong bảng
+      const row = document.createElement('tr');
+      
+      // Tạo các ô trong hàng với dữ liệu tương ứng
+      const column1 = document.createElement('td');
+      column1.innerHTML = data.idCV; // Sử dụng id trả về từ server để tạo số tự động
+      row.appendChild(column1);
+      
+      const column2 = document.createElement('td');
+      column2.innerHTML = data.tenChucVu;
+      row.appendChild(column2);
+      
+      const column3 = document.createElement('td');
+      column3.innerHTML = data.moTa;
+      row.appendChild(column3);
+      
+      // Thêm hàng vào tbody của bảng
+      document.querySelector('table tbody').appendChild(row);
+      
+      // Reset form
+      formAdd.reset();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+//
+
