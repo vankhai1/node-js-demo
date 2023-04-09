@@ -21,6 +21,12 @@ app.get('/home', (req, res) => {
 app.get('/lhkh', (req, res) => {
   res.render('lhkh');
 });
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+app.get('/resigter', (req, res) => {
+  res.render('resigter');
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
