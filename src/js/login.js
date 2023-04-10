@@ -12,14 +12,22 @@ loginForm.addEventListener('submit', (event) => {
     matKhau: password
   })
   .then((response) => {
-    const { isSuccess, message, accessToken } = response.data;
+    const { isSuccess, message, data } = response.data;
+    localStorage.setItem('token', data);
     if (isSuccess) {
-        localStorage.setItem('accessToken', accessToken);
-        alert(`Login successful. Access token: ${accessToken}`);
-        
+        localStorage.setItem('token', data);
+        alert(`Login successful. Access token: ${data}`);
       } else {
         alert(message);
       }
+      if(data==null){
+        alert(message);
+      }else{
+        window.location.href = "/home";
+      }   
+        
+    
+    
   })
   .catch((error) => {
     alert(error.message);
