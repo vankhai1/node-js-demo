@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-    <script src="/lhkh.js" defer></script>
+    <script src="/lhkhr.js" defer></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -27,9 +27,11 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Tên Chức vụ</th>
-          <th>Mô tả</th>
-          <th>id</th>
+          <th>Họ tên KH</th>
+          <th>Email</th>
+          <th>SĐT</th>
+          <th>Ngày Sinh</th>
+          <th>Nội Dung</th>
           <th></th>
            <th>Xóa</th>
         </tr>
@@ -61,16 +63,29 @@
           </div>
           <div class="modal-footer">
             <div class="container mt-5">
-              <h2>Thêm mới chức vụ</h2>
+              <h2>Thêm mới Liên Hệ</h2>
               <form id="form-add">
                 <div class="form-group">
-                  <label for="ten-chuc-vu">Tên chức vụ:</label>
-                  <input type="text" class="form-control" id="ten-chuc-vu" required>
+                  <label for="ten-lien-he">Tên Liên Hệ</label>
+                  <input type="text" class="form-control" id="ten-lien-he" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="so-dien-thoai">SDT:</label>
+                  <input type="tel" class="form-control" id="so-dien-thoai" required>
+                </div>
+                <div class="form-group">
+                  <label for="ngay-sinh">Ngay Sinh:</label>
+                  <input type="date" class="form-control" id="ngay-sinh" required>
                 </div>
                 <div class="form-group">
                   <label for="mo-ta">Mô tả:</label>
                   <textarea class="form-control" id="mo-ta" rows="3"></textarea>
                 </div>
+                
                 <button type="submit" class="btn btn-primary">Thêm mới</button>
                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
               </form>
@@ -84,13 +99,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Sửa thông tin chức vụ</h5>
+                <h5 class="modal-title" id="editModalLabel">Sửa thông tin liên hệ</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="editForm">
                     <div class="mb-3">
-                        <label for="editTenChucVu" class="form-label">Tên chức vụ</label>
+                        <label for="editTenChucVu" class="form-label">Tên liên hệ:</label>
                         <input type="text" class="form-control" id="editTenChucVu" name="tenChucVu" required>
                     </div>
                     <div class="mb-3">

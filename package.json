@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "express-handlebars": "^7.0.4"
+    "express-handlebars": "^7.0.4",
+    "paginationjs": "^2.6.0"
   },
   "devDependencies": {
     "axios": "^1.3.5",

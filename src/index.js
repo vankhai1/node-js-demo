@@ -26,6 +26,9 @@ app.get('/home', (req, res) => {
 app.get('/lhkh', (req, res) => {
   res.render('lhkh');
 });
+app.get('/lhkhr', (req, res) => {
+  res.render('lhkhr');
+});
 app.get('/login', (req, res) => {
   res.render('login');
 });
