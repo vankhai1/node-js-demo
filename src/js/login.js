@@ -2,7 +2,7 @@ const loginForm = document.getElementById('login-form');
 const resultDiv = document.getElementById('result');
 
 loginForm.addEventListener('submit', (event) => {
-  event.preventDefault(); // prevent form submission
+  event.preventDefault(); 
 
   const username = loginForm.username.value;
   const password = loginForm.password.value;
@@ -21,13 +21,10 @@ loginForm.addEventListener('submit', (event) => {
         alert(message);
       }
       if(data==null){
-        alert(message);
+            alert(message);
       }else{
         window.location.href = "/home";
-      }   
-        
-    
-    
+      }
   })
   .catch((error) => {
     alert(error.message);

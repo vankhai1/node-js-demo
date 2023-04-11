@@ -1,3 +1,4 @@
+
 axios.get('https://localhost:44363/api/ChucVu')
   .then(function (response) {
     // Lấy dữ liệu từ response
@@ -129,28 +130,7 @@ formAdd.addEventListener('submit', function (event) {
       console.log(error);
     });
 });
-//xóa nè mong nó chạy :v
 
-const deleteBtn = document.createElement('button');
-deleteBtn.classList.add('btn', 'btn-danger');
-deleteBtn.innerText = 'Xóa';
-deleteBtn.addEventListener('click', function() {
-  // Lấy id chức vụ từ cột idCV của hàng hiện tại
-  const id = item.idCV;
-  
-  // Gửi yêu cầu xóa chức vụ với id tương ứng lên server
-  axios.delete('https://localhost:44363/api/ChucVu/id?id=' + id)
-    .then(function(response) {
-      // Nếu xóa thành công, xóa hàng tương ứng trên bảng
-      row.remove();
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-});
-const column8 = document.createElement('td');
-column8.appendChild(deleteBtn);
-row.appendChild(column8);
 
 
 //kím tìm
