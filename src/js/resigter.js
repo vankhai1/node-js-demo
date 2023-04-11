@@ -10,19 +10,35 @@ submitBtn.addEventListener('click', (event) => {
     return;
   }
 
-  axios.post('https://localhost:44363/api/TaiKhoan', {
-    tenTaiKhoan: username,
-    matKhau: password
-  })
-  .then((response) => {
-    console.log(response);
-    alert('Đăng ký thành công');
-    sendConfirmationEmail(username);
-  })
-  .catch((error) => {
-    console.log(error);
-    alert('Đăng ký thất bại');
-  });
+  // kiểm tra tài khoản xem trùng k :v
+  axios.get('https://localhost:44363/api/TaiKhoan')
+    .then((response) => {
+      const accounts = response.data;
+      const accountExists = accounts.some(account => account.tenTaiKhoan === username);
+      if (accountExists) {
+        alert('Tài khoản đã tồn tại');
+        return;
+      }
+
+      // tạo tk mới
+      axios.post('https://localhost:44363/api/TaiKhoan', {
+        tenTaiKhoan: username,
+        matKhau: password
+      })
+      .then((response) => {
+        console.log(response);
+        alert('Đăng ký thành công');
+        sendConfirmationEmail(username);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Đăng ký thất bại');
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      alert('Không thể kiểm tra tài khoản');
+    });
 });
 
 function sendConfirmationEmail(username) {
