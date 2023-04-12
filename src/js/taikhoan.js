@@ -1,4 +1,5 @@
-axios.get('https://localhost:44363/api/LHKH')
+
+axios.get('https://localhost:44363/api/TaiKhoan')
   .then(function (response) {
     // Lấy dữ liệu từ response
     const data = response.data;
@@ -15,22 +16,16 @@ axios.get('https://localhost:44363/api/LHKH')
       row.appendChild(column1);
       
       const column2 = document.createElement('td');
-      column2.innerHTML = item.hoTenKH;
+      column2.innerHTML = item.tenTaiKhoan;
       row.appendChild(column2);
       
       const column3 = document.createElement('td');
-      column3.innerHTML = item.emailKH;
+      column3.innerHTML = item.matKhau;
       row.appendChild(column3);
       
       const column4 = document.createElement('td');
-      column4.innerHTML = item.sdtkh;
+      column4.innerHTML = item.idTK;
       row.appendChild(column4);
-      const column5= document.createElement('td');
-      column5.innerHTML = item.nskh;
-      row.appendChild(column5);
-      const column6= document.createElement('td');
-      column6.innerHTML = item.tieuDe;
-      row.appendChild(column6);
       // Tạo một nút "Sửa, xóa" cho mỗi hàng
       
       const editBtn = document.createElement('button');
@@ -39,35 +34,26 @@ axios.get('https://localhost:44363/api/LHKH')
       editBtn.addEventListener('click', function() {
     // Hiển thị modal để chỉnh sửa thông tin chức vụ
     showModal(item);
-    function showModal(lhkhs) {
+    function showModal(chucVu) {
     const editForm = document.getElementById('editForm');
     editForm.reset();
-    editForm.elements['idLHKH'].value = lhkhs.idLHKH;
-    editForm.elements['hoTenKH'].value = lhkhs.hoTenKH;
-    editForm.elements['emailKH'].value = lhkhs.emailKH;
-    editForm.elements['sdtkh'].value = lhkhs.sdtkh;
-    editForm.elements['nskh'].value = lhkhs.nskh;
-    editForm.elements['tieuDe'].value = lhkhs.tieuDe;
+    editForm.elements['idCV'].value = chucVu.idCV;
+    editForm.elements['tenChucVu'].value = chucVu.tenChucVu;
+    editForm.elements['moTa'].value = chucVu.moTa;
     const editModal = new bootstrap.Modal(document.getElementById('editModal'));
     editModal.show();
 }
     document.querySelector('#saveButton').addEventListener('click', function() {
      // Lấy dữ liệu từ form
-    const idLHKH = document.querySelector('#editIdLHKH').value;
-    const hoTenKH= document.querySelector('#editHoTenKH').value;
-    const emailKH= document.querySelector('#editEmail').value;
-    const sdtkh= document.querySelector('#editSDT').value;
-    const nskh= document.querySelector('#editNgaySinhKH').value;
-    const tieuDe = document.querySelector('#editMoTa').value;
+    const id = document.querySelector('#editIdCV').value;
+    const tenChucVu = document.querySelector('#editTenChucVu').value;
+    const moTa = document.querySelector('#editMoTa').value;
       
     // Gửi dữ liệu cập nhật lên server
-    axios.put('https://localhost:44363/api/LHKH/id?id=' + id, {
-      idLHKH: idLHKH,
-      hoTenKH: hoTenKH,
-      emailKH: emailKH,
-      sdtkh: sdtkh,
-      nskh: nskh,
-      tieuDe: tieuDe
+    axios.put('https://localhost:44363/api/ChucVu/id?id=' + id, {
+        idCV: id,
+        tenChucVu: tenChucVu,
+        moTa: moTa
       })
       .then(function(response) {
         // Đóng modal sửa
@@ -83,33 +69,32 @@ axios.get('https://localhost:44363/api/LHKH')
       });
   });
 });   
-      const column7 = document.createElement('td');
-      column7.appendChild(editBtn);
-      row.appendChild(column7);  
-     
-      //xóa nè mong nó chạy :v
+      const column5 = document.createElement('td');
+      column5.appendChild(editBtn);
+      row.appendChild(column5);  
+       //xóa nè mong nó chạy :v
 
-        const deleteBtn = document.createElement('button');
-        deleteBtn.classList.add('btn', 'btn-danger');
-        deleteBtn.innerText = 'Xóa';
-        deleteBtn.addEventListener('click', function() {
-        // Lấy id chức vụ từ cột idCV của hàng hiện tại
-        const id = item.idLHKH;
-        
-        // Gửi yêu cầu xóa chức vụ với id tương ứng lên server
-        axios.delete('https://localhost:44363/api/LHKH/' + id)
-            .then(function(response) {
-            // Nếu xóa thành công, xóa hàng tương ứng trên bảng
-            row.remove();
-            })
-            .catch(function(error) {
-            console.log(error);
-            });
-        });
-        const column8 = document.createElement('td');
-        column8.appendChild(deleteBtn);
-        row.appendChild(column8);
-//
+       const deleteBtn = document.createElement('button');
+       deleteBtn.classList.add('btn', 'btn-danger');
+       deleteBtn.innerText = 'Xóa';
+       deleteBtn.addEventListener('click', function() {
+       // Lấy id chức vụ từ cột idCV của hàng hiện tại
+       const id = item.idTK;
+       
+       // Gửi yêu cầu xóa chức vụ với id tương ứng lên server
+       axios.delete('https://localhost:44363/api/TaiKhoan/' + id)
+           .then(function(response) {
+           // Nếu xóa thành công, xóa hàng tương ứng trên bảng
+           row.remove();
+           })
+           .catch(function(error) {
+           console.log(error);
+           });
+       });
+       const column6 = document.createElement('td');
+       column6.appendChild(deleteBtn);
+       row.appendChild(column6);
+     
       
       // Thêm hàng vào tbody của bảng
       document.querySelector('table tbody').appendChild(row);
@@ -120,6 +105,7 @@ axios.get('https://localhost:44363/api/LHKH')
   .catch(function (error) {
     console.log(error);
   });
+
   //them 
   // Gán form add chức vụ vào biến formAdd
 const formAdd = document.querySelector('#form-add');
@@ -130,15 +116,12 @@ formAdd.addEventListener('submit', function (event) {
   
   // Lấy dữ liệu từ form và đóng gói vào object
   const formData = {
-    hoTenKH: document.querySelector('#ten-lien-he').value,
-    emailKH: document.querySelector('#email').value,
-    sdtkh: document.querySelector('#so-dien-thoai').value,
-    nskh: document.querySelector('#ngay-sinh').value,
-    tieuDe: document.querySelector('#mo-ta').value,
+    tenChucVu: document.querySelector('#ten-chuc-vu').value,
+    moTa: document.querySelector('#mo-ta').value,
   };
   
   // Gửi dữ liệu lên server
-  axios.post('https://localhost:44363/api/LHKH', formData)
+  axios.post('https://localhost:44363/api/ChucVu', formData)
     .then(function (response) {
       // Nếu thành công, thêm chức vụ mới vào bảng
       const data = response.data;
@@ -148,30 +131,15 @@ formAdd.addEventListener('submit', function (event) {
       
       // Tạo các ô trong hàng với dữ liệu tương ứng
       const column1 = document.createElement('td');
-      column1.innerHTML = data.idLHKH; // Sử dụng id trả về từ server để tạo số tự động
+      column1.innerHTML = data.idCV; // Sử dụng id trả về từ server để tạo số tự động
       row.appendChild(column1);
-      
       const column2 = document.createElement('td');
-      column2.innerHTML = data.hoTenKH;
+      column2.innerHTML = data.tenChucVu;
       row.appendChild(column2);
       
       const column3 = document.createElement('td');
-      column3.innerHTML = data.emailKH;
+      column3.innerHTML = data.moTa;
       row.appendChild(column3);
-
-      const column4 = document.createElement('td');
-      column4.innerHTML = data.sdtkh;
-      row.appendChild(column4);
-
-      const column5= document.createElement('td');
-      column5.innerHTML = data.nskh;
-      row.appendChild(column5);
-
-      const column6= document.createElement('td');
-      column6.innerHTML = data.tieuDe;
-      row.appendChild(column6);
-
-
       
       // Thêm hàng vào tbody của bảng
       document.querySelector('table tbody').appendChild(row);
@@ -204,3 +172,4 @@ document.querySelector('#searchInput').addEventListener('input', function() {
     }
   });
 });
+// xóa nè

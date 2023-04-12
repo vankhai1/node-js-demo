@@ -106,13 +106,25 @@
                 <form id="editForm">
                     <div class="mb-3">
                         <label for="editTenChucVu" class="form-label">Tên liên hệ:</label>
-                        <input type="text" class="form-control" id="editTenChucVu" name="tenChucVu" required>
+                        <input type="text" class="form-control" id="editHoTenKH" name="hoTenKH" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTenChucVu" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="editEmail" name="emailKH" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTenChucVu" class="form-label">SDT:</label>
+                        <input type="text" class="form-control" id="editSDT" name="sdtkh" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTenChucVu" class="form-label">Ngày Sinh:</label>
+                        <input type="date" class="form-control" id="editNgaySinhKH" name="nskh" required>
                     </div>
                     <div class="mb-3">
                         <label for="editMoTa" class="form-label">Mô tả</label>
-                        <textarea class="form-control" id="editMoTa" name="moTa"></textarea>
+                        <textarea class="form-control" id="editMoTa" name="tieuDe"></textarea>
                     </div>
-                    <input type="hidden" name="idCV" id="editIdCV">
+                    <input type="hidden" name="idLHKH" id="editIdLHKH">
                 </form>
             </div>
             <div class="modal-footer">
@@ -123,9 +135,6 @@
     </div>
 </div>
             <!-- Form sửa thông tin Chức vụ được tạo bằng JavaScript sẽ được thêm vào đây -->
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-</div>
+          
 </body>
 </html>

@@ -8,10 +8,9 @@ const app = express();
 const axios = require('axios');
 const port = 3000 ;
 const https = require('https');
-const sanitizeHtml = require('sanitize-html');
-const userInput = '<script>alert("XSS attack!")</script><p>Hello, world!</p>';
-const sanitizedInput = sanitizeHtml(userInput);
-console.log(sanitizedInput); // Output: <p>Hello, world!</p>
+
+
+
 //gui mail
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -31,7 +30,7 @@ app.post('/send-email', (req, res) => {
     from: 'vancongkhai1810@gmail.com',
     to: username,
     subject: 'Confirmation email',
-    text: 'Your account has been successfully created!'
+    text: 'Xác nhận gmail này la thật. Bạn đã đăng ký thành công'
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -73,6 +72,13 @@ app.get('/resigter', (req, res) => {
 app.get('/chat', (req, res) => {
   res.render('chat');
 });
+app.get('/nhanvien', (req, res) => {
+  res.render('nhanvien');
+});
+app.get('/taikhoan', (req, res) => {
+  res.render('taikhoan');
+});
+
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 axios.get('https://localhost:44363/api/ChucVu', { httpsAgent })
