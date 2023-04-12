@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat đi</title>
+
+    <link rel="stylesheet" href="/css/chat.css">
+    <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./chat.js"></script>
+</head>
+
+<body>
+
+<div id="bodyy">
+    <fieldset>
+    
+    <legend>chat đi</legend>
+    <input type="text" id="username" name="username" placeholder="Nhap ten" class="form-control" placeholder="">
+    
+    <br>
+    <div id="content"></div>
+    <input id="message" placeholder="Viết gì đó đi...." type="text" class="form-control" placeholder="">
+    
+    <br>
+    {{!-- <button id="sendMessage">Gửi</button> --}}
+    <button  id="sendMessage" type="submit" class="btn btn-login float-right">Gửi</button>
+</fieldset>
+</div>
+
+</body>
+</html>

@@ -11,67 +11,83 @@
                     <a href="/trangchu" class="nav-link px-2">Trang Chủ</a>
                 </li>
                 <li class="nav-iteem">
-                    <a *ngIf="loginProces()"  href="/khachhangtn" class="nav-link px-2">Chào Hàng</a>
+                    <a   href="/khachhangtn" class="nav-link px-2">Chào Hàng</a>
                 </li>
                 <li class="nav-iteem">
-                    <a *ngIf="loginProces()"  href="/lhkh" class="nav-link px-2">Liên Hệ</a>
+                    <a   href="/lhkhr" class="nav-link px-2">Liên Hệ</a>
                 </li>
                 <li class="nav-iteem">
-                    <a *ngIf="loginProces()"  href="/congviec" class="nav-link px-2">Công Việc</a>
+                    <a   href="/congviec" class="nav-link px-2">Công Việc</a>
                 </li>
                 <li class="nav-iteem">
-                    <a *ngIf="loginProces()"  href="/taikhoan" class="nav-link px-2">Tài Khoản</a>
+                    <a   href="/taikhoan" class="nav-link px-2">Tài Khoản</a>
                 </li>
                 <li class="nav-iteem">
-                    <a *ngIf="loginProces()"  href="giaodich" class="nav-link px-2">Giao Dịch</a>
+                    <a   href="giaodich" class="nav-link px-2">Giao Dịch</a>
                 </li>
                 <li  class="nav-iteem">
-                    <a *ngIf="loginProces()"  href="/baocao" class="nav-link px-2">Báo Cáo</a>
+                    <a   href="/lhkh" class="nav-link px-2">Chuc Vu</a>
                 </li>
             </ul>
             <div class="userlogin">
             <ul class="navbar-nav flex-row">
-                
-
-
-                <li class="nav-item">
-                    <a *ngIf="!loginProces()" href="/resigter" class="nav-link px-2">Resigter</a>
-                </li>
-                <li *ngIf="!loginProces()" class="nav-item">
-                    <a href="/login" class="nav-link px-2" >login</a>
-                </li>
-                <!-- <li *ngIf="loginProces()" class="nav-item">
-                    <a href="/login" class="nav-link px-2" (click)="onLogout()" >Logout</a>
-                </li> -->
-                
-               
-                <div class="btn-group" dropdown *ngIf="loginProces()">
-                    
-                    <!-- <button type="button" class="btn btn-lightblue">Wellcome </button> -->
-                    
-                    <img 
-                    src="https://img.freepik.com/premium-vector/female-user-profile-avatar-is-woman-character-screen-saver-with-emotions_505620-617.jpg"
-                    alt="" dropdownToggle class="btn btn-blue dropdown-toggle dropdown-toggle-split"
-                    aria-controls="dropdown-split"
-                    style="width: 45px; height: 45px"
-                    class="rounded-circle"
-                    />
-                      <span class="caret"></span>
-                      <span class="sr-only visually-hidden">Split button!</span>
-                   
-                    <ul id="dropdown-split" *dropdownMenu class="dropdown-menu"
-                        role="menu" aria-labelledby="button-split">
-                      <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-                      <li role="menuitem"><a class="dropdown-item" href="#">Account</a>
-                      </li>
-                      <li role="menuitem"><a class="dropdown-item" href="#">User Profile</a></li>
-                      <li class="divider dropdown-divider"></li>
-                     <li *ngIf="loginProces()" role="menuitem">
-                    <a href="/login" class="dropdown-item" (click)="onLogout()" >Logout</a>
-                     </li>
-                    </ul>
-                  </div>
-
+             <li class="nav-item" *ngIf="!isLoggedIn">
+                <a href="/resigter" class="nav-link px-2">Register</a>
+            </li>
+            <li class="nav-item" *ngIf="!isLoggedIn">
+                <a href="/login" class="nav-link px-2">Login</a>
+            </li>
+            <li class="nav-item" *ngIf="isLoggedIn">
+                <a href="#" class="nav-link px-2" (click)="logout()">Logout</a>
+            </li>        
             </ul>  
         </div>
         </nav>
+           <script>
+    const token = localStorage.getItem('token');
+    
+    if (token) {
+        // ẩn nút login và register, hiện nút logout
+        document.querySelector('.nav-item:nth-child(1)').style.display = 'none'; 
+        document.querySelector('.nav-item:nth-child(2)').style.display = 'none'; 
+        document.querySelector('.nav-item:nth-child(3)').style.display = 'block'; 
+    } else {
+        // ẩn nút logout, hiện nút login và register
+        document.querySelector('.nav-item:nth-child(1)').style.display = 'block'; 
+        document.querySelector('.nav-item:nth-child(2)').style.display = 'block'; 
+        document.querySelector('.nav-item:nth-child(3)').style.display = 'none'; 
+        
+        // chuyển đến trang login
+        document.querySelector('.nav-item:nth-child(2) a').addEventListener('click', function(e) {
+            e.preventDefault(); 
+            window.location.href = '/login';
+        });
+        
+        // chuyển đến trang register
+        document.querySelector('.nav-item:nth-child(1) a').addEventListener('click', function(e) {
+            e.preventDefault(); 
+            window.location.href = '/register';
+        });
+    }
+    
+       // xử lý khi người dùng đăng xuất
+        document.querySelector('.nav-item:nth-child(3) a').addEventListener('click', function(e) {
+            e.preventDefault(); 
+            localStorage.removeItem('token');
+            window.location.href = '/login';
+        });
+        if (!token) {
+        const links = document.querySelectorAll('.navbar-nav a');
+            links.forEach(link => {
+            link.addEventListener('click', e => {
+            // Ngăn chặn hành động mặc định của thẻ <a>
+            e.preventDefault();
+
+            // Chuyển hướng đến trang đăng nhập hoặc đăng ký tương ứng
+            if (link.getAttribute('href') === '/login' || link.getAttribute('href') === '/resigter') {
+                window.location.href = link.getAttribute('href');
+            }
+            });
+        });
+        }
+</script>

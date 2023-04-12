@@ -1,0 +1,131 @@
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="/lhkhr.js" defer></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+</head>
+    <title>chuc vu</title>
+</head>
+<body><h1>sadsa</h1><br>
+ <div class="container">
+    <h2>Danh sách Chức vụ</h2>
+    <div class="mb-3">
+      <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm...">
+    </div>
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+      Thêm Chức vụ
+    </button>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Họ tên KH</th>
+          <th>Email</th>
+          <th>SĐT</th>
+          <th>Ngày Sinh</th>
+          <th>Nội Dung</th>
+          <th></th>
+           <th>Xóa</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <!-- Dữ liệu được tạo bằng JavaScript sẽ được thêm vào đây -->
+      </tbody>
+    </table>
+    <div id="pagination">
+      <button id="prevPage">&lt;&lt;</button>
+      <button id="nextPage">&gt;&gt;</button>
+      <span id="currentPage"></span>
+    </div>
+
+ 
+    <!-- Modal Thêm Chức vụ -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addModalLabel">Thêm Chức vụ mới</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Form thêm Chức vụ được tạo bằng JavaScript sẽ được thêm vào đây -->
+          </div>
+          <div class="modal-footer">
+            <div class="container mt-5">
+              <h2>Thêm mới Liên Hệ</h2>
+              <form id="form-add">
+                <div class="form-group">
+                  <label for="ten-lien-he">Tên Liên Hệ</label>
+                  <input type="text" class="form-control" id="ten-lien-he" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="so-dien-thoai">SDT:</label>
+                  <input type="tel" class="form-control" id="so-dien-thoai" required>
+                </div>
+                <div class="form-group">
+                  <label for="ngay-sinh">Ngay Sinh:</label>
+                  <input type="date" class="form-control" id="ngay-sinh" required>
+                </div>
+                <div class="form-group">
+                  <label for="mo-ta">Mô tả:</label>
+                  <textarea class="form-control" id="mo-ta" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Thêm mới</button>
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal sua -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Sửa thông tin liên hệ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="mb-3">
+                        <label for="editTenChucVu" class="form-label">Tên liên hệ:</label>
+                        <input type="text" class="form-control" id="editTenChucVu" name="tenChucVu" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editMoTa" class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="editMoTa" name="moTa"></textarea>
+                    </div>
+                    <input type="hidden" name="idCV" id="editIdCV">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="saveButton">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- Form sửa thông tin Chức vụ được tạo bằng JavaScript sẽ được thêm vào đây -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+</div>
+</body>
+</html>

@@ -1,3 +1,4 @@
+
 axios.get('https://localhost:44363/api/ChucVu')
   .then(function (response) {
     // Lấy dữ liệu từ response

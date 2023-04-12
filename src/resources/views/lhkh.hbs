@@ -9,8 +9,9 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
 </head>
-    <title>Document</title>
+    <title>chuc vu</title>
 </head>
 <body><h1>sadsa</h1><br>
  <div class="container">
@@ -18,6 +19,10 @@
     <div class="mb-3">
       <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm...">
     </div>
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+      Thêm Chức vụ
+    </button>
+
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -30,14 +35,17 @@
         </tr>
       </thead>
       <tbody>
+        
         <!-- Dữ liệu được tạo bằng JavaScript sẽ được thêm vào đây -->
       </tbody>
     </table>
+    <div id="pagination">
+      <button id="prevPage">&lt;&lt;</button>
+      <button id="nextPage">&gt;&gt;</button>
+      <span id="currentPage"></span>
+    </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-      Thêm Chức vụ
-    </button>
-
+ 
     <!-- Modal Thêm Chức vụ -->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -71,7 +79,7 @@
         </div>
       </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal sua -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -99,17 +107,6 @@
         </div>
     </div>
 </div>
-    <!-- Modal Sửa Chức vụ -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="editModalLabel">Sửa thông tin Chức vụ</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
             <!-- Form sửa thông tin Chức vụ được tạo bằng JavaScript sẽ được thêm vào đây -->
           </div>
           <div class="modal-footer">
