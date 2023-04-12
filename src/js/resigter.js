@@ -1,15 +1,27 @@
+function checkInput() {
+    const usernameInput = document.getElementById('username');
+    const errorMessage = document.getElementById('error-message');
+  
+    const regex = /^[a-zA-Z0-9]+$/; // Chỉ cho phép kí tự chữ cái và số
+    if (!regex.test(usernameInput.value)) {
+      errorMessage.style.display = 'block';
+    } else {
+      errorMessage.style.display = 'none';
+    }
+  }
 const submitBtn = document.getElementById('submit-btn');
 submitBtn.addEventListener('click', (event) => {
   event.preventDefault();
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  const confirmPassword = document.getElementById('confirm-password').value;
-
+  
+  const username = DOMPurify.sanitize(document.getElementById('username').value);
+  const password = DOMPurify.sanitize(document.getElementById('password').value);
+  const confirmPassword = DOMPurify.sanitize(document.getElementById('confirm-password').value);
+    
+    
   if (password !== confirmPassword) {
     alert('Mật khẩu không trùng');
     return;
   }
-
   // kiểm tra tài khoản xem trùng k :v
   axios.get('https://localhost:44363/api/TaiKhoan')
     .then((response) => {
@@ -19,7 +31,6 @@ submitBtn.addEventListener('click', (event) => {
         alert('Tài khoản đã tồn tại');
         return;
       }
-
       // tạo tk mới
       axios.post('https://localhost:44363/api/TaiKhoan', {
         tenTaiKhoan: username,

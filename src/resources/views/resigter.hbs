@@ -5,7 +5,7 @@
  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/nodemailer/6.6.5/nodemailer.min.js"></script>
     <script src="./resigter.js" defer></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.2.6/purify.min.js"></script>
   <div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
@@ -14,7 +14,8 @@
 			<div class="sign-in-htm">
 				<div class="group">
 					<label  for="user" class="label">Username or Email</label>
-					<input id="username" type="text" class="input">
+					<input id="username" type="text" class="input"  oninput="checkInput()">
+					<div id="error-message" style="display: none;">Tên tài khoản chỉ được sử dụng các kí tự chữ cái số và @</div>
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Password</label>

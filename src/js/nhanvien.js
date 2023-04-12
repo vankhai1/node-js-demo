@@ -1,3 +1,4 @@
+
 axios.get('https://localhost:44363/api/LHKH')
   .then(function (response) {
     // Lấy dữ liệu từ response

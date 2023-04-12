@@ -7,12 +7,8 @@ const cors = require('cors');
 const app = express();
 const axios = require('axios');
 const port = 3000 ;
-
 const https = require('https');
-const xss = require('xss');
-const userInput = '<script>alert("XSS attack!")</script><p>Hello, world!</p>';
-const sanitizedInput = xss(userInput);
-console.log(sanitizedInput); // Output: <p>Hello, world!</p>
+
 
 
 //gui mail
@@ -76,6 +72,13 @@ app.get('/resigter', (req, res) => {
 app.get('/chat', (req, res) => {
   res.render('chat');
 });
+app.get('/nhanvien', (req, res) => {
+  res.render('nhanvien');
+});
+app.get('/taikhoan', (req, res) => {
+  res.render('taikhoan');
+});
+
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 axios.get('https://localhost:44363/api/ChucVu', { httpsAgent })
